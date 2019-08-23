@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Khan Academy and Processingjs</title> 
+  </head>
+  <body>
+    <canvas id="canvas"></canvas> 
+    <script src="processing.min.js"></script>
+
+    <script>
+
+    var programCode = function(processingInstance) {
+      with (processingInstance) {
+        size(800, 400); 
+        frameRate(30);
+
+        
+        var homePositionX = -250;
+        var homePositionY = -130;
+        var sunSize = 50;
+        var sunSpeed = 10;
+      
+        draw = function() {
+          background(100, 140, 207);
+          
+
+          // draw landscape
+          noStroke();
+          fill(238,245,49);
+          ellipse(800 - sunSpeed, 50,sunSize, sunSize); 
+
+          stroke(50, 217, 50);
+          strokeWeight(25);
+          line(800, 395, -19, 395);
+
+          // draw the helicopter
+          noStroke();
+          fill(255, 255, 255);
+          ellipse(homePositionX + 193, homePositionY + 208, 108, 67);
+          ellipse(homePositionX + 123, homePositionY + 200, 88, 34);
+          rect(homePositionX + 179, homePositionY + 155, 25, 24);
+          fill(15, 15, 15);
+          ellipse(homePositionX + 221, homePositionY + 200, 33, 27);
+          rect(homePositionX + 123, homePositionY + 153, 132, 8);
+
+          if ( homePositionX <= 400){
+            homePositionX += 6;
+          }
+          if (homePositionY <= 140 && homePositionX > 300){
+            homePositionY += 0.8;
+          }
+          if (sunSize <= 200){
+            sunSize /= 99/100;
+          }
+          if (sunSpeed <= 720){
+            sunSpeed++;
+          }
+          
+        };
+      }
+    };
+  
+    var canvasElement = document.getElementById("canvas"); 
+    var processingInstance = new Processing(canvasElement, programCode);
+     
+    </script>
+  </body>
+</html>
